@@ -1,0 +1,116 @@
+package member;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+public class memberDao {
+	// DB 연동에 필요한 JDBC 클래스 선언
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+
+	public void signUp(memberDo mdo) {
+		System.out.println("signUp() 처리 시작");
+		
+		//DB 연결
+		connect_cp();
+		
+		//SQL 처리 루틴
+		String sql = "insert into members(id,pw,name,email) values(?,?,?,?) convert to charset utf8";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,mdo.getId());
+			pstmt.setString(2,mdo.getPw());
+			pstmt.setString(3,mdo.getName());
+			pstmt.setString(4,mdo.getEmail());
+			
+			//sql문 실행 : 테이블에 변화 있으면  update..
+			pstmt.executeUpdate();
+			
+			System.out.println("signUp() 처리 완료");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		//디비 연결 종료
+		disConnect();
+	}
+	
+	public boolean signIn(String id,String pw) {
+		boolean login = false;
+		
+		System.out.println("signIn()처리 시작");
+		
+		//DB 연결
+		connect_cp();
+		
+		try{
+			String sql = "select * from members where id=? and pw=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				System.out.println("login success!");
+				login = true;
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return login;
+	}
+	
+	public void connect_cp() {
+		try {
+			//context 객체 생성
+			Context initctx = new InitialContext();
+			//context.xml 접근
+			Context envctx = (Context) initctx.lookup("java:/comp/env");
+			
+			//'jdbc/pool' 이름의 커넥션 풀에 접근
+			DataSource ds = (DataSource) envctx.lookup("jdbc/pool");
+			//collection pool로부터 collection 하나 빌려오기
+			conn = ds.getConnection();
+			
+			System.out.println("collection pool로부터 디비 연결 성공");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void disConnect() {
+		if(conn != null) {
+			try {
+				conn.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(pstmt != null) {
+			try {
+				pstmt.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(rs != null) {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}

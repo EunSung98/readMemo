@@ -1,0 +1,48 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="books.bookDo"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+ <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/128/9433/9433739.png">
+<title>감상 일기</title>
+</head>
+<body>
+<jsp:useBean id="bdao" class="books.bookDao" />
+<%
+	String userId = (String) session.getAttribute("id");
+	String book = request.getParameter("book");
+	
+	bookDo bdo = bdao.goPage(book,userId);
+	
+	SimpleDateFormat dateformat = new SimpleDateFormat("yyyy.MM.dd");
+	String date = dateformat.format(bdo.getDate());
+%>
+<div class="container shadow p-3 mb-5 bg-body rounded vh-100">
+	<jsp:include page="../header.jsp"/>
+	 <div class="row m-2">
+	 	<h2><%= bdo.getBookName() %></h2>
+	 </div>
+	 <div class="row g-2">
+		  <div class="col m-3 ">
+		    <h6>writer :<%= bdo.getWriter() %></h6>
+		  </div>
+		  <div class="col  m-3">
+		    <h6>date : <%= date %></h6>
+		  </div>
+	</div>
+	<div class="row m-3 p-6">
+		<%= bdo.getContent() %>
+	</div>
+	<div class="row m-4 ">
+		  <button type="button" class="col m-2 btn btn-primary" onclick="location.href='diary.jsp'">돌아가기</button>
+		  <button type="button" class="col m-2 btn btn-primary"
+		  	onclick="location.href='deletePage.jsp?book=<%= bdo.getBookName() %>'">삭제</button>
+		  <button type="button" class="col m-2 btn btn-primary"
+		  	onclick="location.href='modify.jsp?book=<%= bdo.getBookName() %>'">수정</button>
+	</div>
+</div>
+</body>
+</html>

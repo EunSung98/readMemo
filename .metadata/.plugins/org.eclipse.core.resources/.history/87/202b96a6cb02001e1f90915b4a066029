@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	request.setCharacterEncoding("utf-8");
+%>
+
+<!-- dao 클래스를 이용해 입력값을 저장  -->
+<jsp:useBean id="bdo" class="books.bookDo" >
+	<jsp:setProperty name="bdo" property="*" />
+</jsp:useBean>
+
+<jsp:useBean id="bdao" class="books.bookDao" />
+
+<% 	
+		bdao.modifyBook(bdo);
+		
+		response.sendRedirect("page.jsp?book=bdo.getBookName()");
+%>
+</body>
+</html>

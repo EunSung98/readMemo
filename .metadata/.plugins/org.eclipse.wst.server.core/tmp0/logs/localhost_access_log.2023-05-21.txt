@@ -1,0 +1,6 @@
+127.0.0.1 - - [21/May/2023:19:47:56 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [21/May/2023:19:47:57 +0900] "GET /cultureMemoProject/login.jsp HTTP/1.1" 200 1092
+0:0:0:0:0:0:0:1 - - [21/May/2023:19:47:57 +0900] "GET /favicon.ico HTTP/1.1" 404 818
+0:0:0:0:0:0:0:1 - - [21/May/2023:19:55:37 +0900] "GET /cultureMemoProject/login.jsp HTTP/1.1" 200 1111
+0:0:0:0:0:0:0:1 - - [21/May/2023:19:55:38 +0900] "GET /cultureMemoProject/login.jsp HTTP/1.1" 200 1111
+0:0:0:0:0:0:0:1 - - [21/May/2023:19:55:49 +0900] "GET /cultureMemoProject/diary.jsp HTTP/1.1" 200 2502

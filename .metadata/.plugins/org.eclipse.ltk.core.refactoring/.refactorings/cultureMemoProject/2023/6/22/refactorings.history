@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;cultureMemoProject/src/main/webapp/firstStep/singUpProc.jsp&apos; to &apos;signUpProc.jsp&apos;" description="Rename resource &apos;singUpProc.jsp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/firstStep/singUpProc.jsp" name="signUpProc.jsp" stamp="1685774044333" updateReferences="true"/>
+</session>

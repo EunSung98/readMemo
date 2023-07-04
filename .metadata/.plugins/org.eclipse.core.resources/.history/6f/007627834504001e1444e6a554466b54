@@ -1,0 +1,20 @@
+<%@page import="books.bookDo"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<jsp:useBean id="bdao" class="books.bookDao" />
+<%
+	String book = request.getParameter("book");
+	
+	bdao.deleteBook(book);
+	
+	response.sendRedirect("diary.jsp");
+%>
+</body>
+</html>
