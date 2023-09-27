@@ -1,4 +1,9 @@
-# readMemo
+# 감상일기
+
+
+https://github.com/EunSung98/readMemo/assets/77737044/eddb18df-9172-4273-a060-b0ff0e583b7e
+
+
 ![슬라이드1](https://github.com/EunSung98/readMemo/assets/77737044/bff69835-b0f8-40ff-8abe-0ec38f390b66)
 ![슬라이드2](https://github.com/EunSung98/readMemo/assets/77737044/9d47a3f1-bd4b-4c2f-8de6-5477dd0113a2)
 ![슬라이드3](https://github.com/EunSung98/readMemo/assets/77737044/73538471-da6c-49fe-88ed-2232b322fa29)
